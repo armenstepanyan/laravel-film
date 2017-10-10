@@ -1,0 +1,49 @@
+ <!-- Modal -->
+ <div class="modal fade" id="filmsModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add new Film</h4>
+            </div>
+            <div class="modal-body">
+              <p ng-if="loading">Loading ...</p>
+              <div class="alert alert-danger" ng-if="errorFilm.length > 0">
+                  <ul>
+                    <li ng-repeat="error in errorFilm">
+                        {{ error }}
+                    </li>
+                  </ul>
+              </div>
+
+              <div ng-if="!loading">
+                  <div class="form-group">
+                      <label>Film Title</label>
+                      <input class="form-control" ng-model="film.title">
+                  </div>
+                  <div class="form-group">
+                        <label>Film Year</label>
+                        <input class="form-control" ng-model="film.year" type="number">
+                  </div>
+
+
+                    <film-tags
+                        ng-if="tagList"
+                        tag-list="tagList"
+                        checked-tags="film.checkedTags"
+                        is-single-film="true" 
+                  >
+                  </film-tags>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" ng-click="saveFilm()">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>             
+            </div>
+          </div>
+          
+        </div>
+      </div>

@@ -1,0 +1,43 @@
+
+<h3>{{ isSingleFilm ? 'Select ' : ''}} Tags</h3>
+<div class="input-group">
+    <input type="text" class="form-control" ng-model="newTag" placeholder="Add new tag">
+    <span class="input-group-btn">
+         <button class="btn btn-default" type="button" ng-click="addTag()">Add</button>
+    </span>
+ </div>
+
+
+<div ng-if="isSingleFilm">
+<div class="form-check" ng-repeat="tag in tagList">
+    <label class="form-check-label">
+      <input 
+        class="form-check-input" 
+        type="checkbox" 
+        ng-checked="isChecked(tag)"         
+        ng-model="tag.checked"
+        ng-click="toggle(tag.id)"
+        data-id="{{ tag.id }}"        
+        >
+      {{ tag.title }}
+    </label>
+  </div>
+  </div>
+
+  <div class="form-check" ng-if="!isSingleFilm">
+      <div class="alert alert-danger" ng-if="error">
+        {{ error }}
+      </div>
+    
+    <table class="table table-striped">
+        <tr ng-repeat="tag in tagList">
+            <td>
+                {{ tag.title }}
+            </td>
+            <td>
+                <button class="btn btn-danger btn-xs" ng-click="deleteTag(tag.id)">Delete</button>
+            </td>
+        </tr>
+    </table>
+   
+  </div>
